@@ -8,7 +8,7 @@ SketchUpImporter:
   selectedNodes: 000000000100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c0000000d0000000e0000000f0000001000000011000000120000001300000014000000150000001600000017000000
   assetHash:
     serializedVersion: 2
-    Hash: 539e129ce181c5582f01853ef1e48cc7
+    Hash: 1bfade4e2538315ca3afcead1873de70
   longitude: -105.283
   latitude: 40.017
   northCorrection: -0
@@ -79,6 +79,7 @@ SketchUpImporter:
     4300006: Mesh Component#11
     4300008: Mesh Component#12
     4300010: Mesh Component#32
+    4300012: Mesh ClydeCar
   materials:
     importMaterials: 1
     materialName: 2
