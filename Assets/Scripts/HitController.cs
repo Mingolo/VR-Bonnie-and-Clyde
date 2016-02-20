@@ -26,14 +26,23 @@ public class HitController : MonoBehaviour
 	{	
 		if (objectType == 0) 
 		{	
+			GameObject temp1 = null;
+			GameObject temp2 = null;
 			if(inst)
-				Instantiate (damageParticles, hitPoint, transform.rotation);
-			Instantiate (bulletHole, hitPoint, parent.transform.rotation);
+				temp1 = Instantiate (damageParticles, hitPoint, transform.rotation) as GameObject;
+			temp2 = Instantiate (bulletHole, hitPoint, parent.transform.rotation) as GameObject;
+			if (temp1 != null) 
+				temp1.transform.parent = parent.transform;
+			if (temp2 != null) 
+				temp2.transform.parent = parent.transform;
 		} 
 		else if (objectType == 1 || objectType == 2) 
 		{
+			GameObject temp1 = null;
 			if(inst)
-				Instantiate (damageParticles, hitPoint, transform.rotation);
+				temp1 = Instantiate (damageParticles, hitPoint, transform.rotation) as GameObject;
+			if (temp1 != null) 
+				temp1.transform.parent = parent.transform;
 		}
 	}
 }
