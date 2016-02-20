@@ -18,15 +18,17 @@ public class HitController : MonoBehaviour
 	
 	}
 
-	public void getHit(Vector3 hitPoint)
+	public void getHit(Vector3 hitPoint, bool inst)
 	{	
 		if (objectType == 0) 
 		{	
-			Instantiate (damageParticles, hitPoint, transform.rotation);
+			if(inst)
+				Instantiate (damageParticles, hitPoint, transform.rotation);
 		} 
 		else if (objectType == 1) 
 		{
-			Instantiate (damageParticles, hitPoint, transform.rotation);
+			if(inst)
+				Instantiate (damageParticles, hitPoint, transform.rotation);
 		}
 	}
 }

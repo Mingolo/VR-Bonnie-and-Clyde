@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections;
 
 public class ShootingController : MonoBehaviour 
@@ -8,6 +9,7 @@ public class ShootingController : MonoBehaviour
 	public double timeBShots;
 	public int range;
 	public double effectDuration;			//must be less than timeBShots
+	public int gunType;						//0 = tommy gun, 1 = shotgun, 2 = revolver
 
 	private double accTime;		//used to enforce fire rate
 	private double accTime2;	//for effect duration
@@ -22,10 +24,11 @@ public class ShootingController : MonoBehaviour
 	{
 		accTime = 0;
 		accTime2 = effectDuration;
-		shooting = true;
+		shooting = false;
 		shotEffects = false;
 		shotParticles = gunParticles.emission;
 		shotParticles.enabled = false;
+		gunParticles.Play ();
 		playerMask = LayerMask.GetMask ("Player");
 	}
 	
@@ -53,7 +56,6 @@ public class ShootingController : MonoBehaviour
 				shotEffects = true;
 				shotLight.enabled = true;											//TRIGGER GUNSHOT SOUND FROM HERE
 				shotParticles.enabled = false;
-				//gunParticles.Simulate (0);
 				shotParticles.enabled = true;
 
 				shootRay.origin = transform.position;
@@ -64,9 +66,28 @@ public class ShootingController : MonoBehaviour
 				for (int i = 0; i < hits.Length; i++) 
 				{
 					HitController playerHit = hits[i].collider.GetComponent <HitController>();
-					playerHit.getHit (hits[i].point);
+					if (gunType == 0) 
+					{
+						System.Random random = new System.Random ();
+						int num = random.Next (0, 5);
+						if (num == 0) 
+							playerHit.getHit (hits [i].point, true);
+						else
+							playerHit.getHit (hits [i].point, false);
+					}
+					else
+						playerHit.getHit (hits [i].point, true);
 				}
-				accTime = timeBShots;				
+				if (gunType == 0)
+					accTime = timeBShots;
+				else 
+				{
+					System.Random random = new System.Random ();
+					int min = (int) (timeBShots * 100 * 0.75);
+					int max = (int) (timeBShots * 100 * 1.25);
+					accTime = random.Next (min, max)/100.0;
+					print ("\nWait Time: " + accTime);
+				}
 			}
 		}		
 	}
