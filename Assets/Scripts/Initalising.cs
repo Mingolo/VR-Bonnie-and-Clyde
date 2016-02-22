@@ -22,7 +22,7 @@ public class Initalising : MonoBehaviour {
             Left->Right z+500, y = 90 *
     */
 
-     public  void setobj()
+     public  void Call_Map()
     {
 
         Vector3 pos;
@@ -50,7 +50,7 @@ public class Initalising : MonoBehaviour {
                     x_offset -= 0.4f;
                     z_offset += 500f;
                     pos = new Vector3(x_offset, 42, z_offset);
-                    next = (GameObject)Instantiate(Path_Left, pos, Quaternion.Euler(0, -90, 0));
+                    next = (GameObject)Instantiate(Path_Right, pos, Quaternion.Euler(0, -90, 0));
                     prev = cur;
                     cur = after;
                     Destroy(previous);
@@ -58,14 +58,14 @@ public class Initalising : MonoBehaviour {
                     current = next;
                 }
                 break;
-            //Current Path is Left
+            //Current Path is Right
             case 1:
                 if (after == 0)
                 {
                     z_offset += 500f;
 
                     pos = new Vector3(x_offset, 42, z_offset);
-                    next = (GameObject)Instantiate(Path_Left, pos, Quaternion.Euler(0, 90, 0));
+                    next = (GameObject)Instantiate(Path_1, pos, Quaternion.Euler(0, 90, 0));
                     prev = cur;
                     cur = after;
                     Destroy(previous);
@@ -85,14 +85,14 @@ public class Initalising : MonoBehaviour {
                     current = next;
                 }
                 break;
-            //Current path is Right
+            //Current path is Left
             case 2:
                 if (after == 0)
                 {
 
                     z_offset += 490f;
                     pos = new Vector3(x_offset, 42, z_offset);
-                    next = (GameObject)Instantiate(Path_Left, pos, Quaternion.Euler(0, 0, 0));
+                    next = (GameObject)Instantiate(Path_1, pos, Quaternion.Euler(0, 0, 0));
                     prev = cur;
                     cur = after;
                     Destroy(previous);
@@ -104,7 +104,7 @@ public class Initalising : MonoBehaviour {
 
                     z_offset += 500f;
                     pos = new Vector3(x_offset, 42, z_offset);
-                    next = (GameObject)Instantiate(Path_Left, pos, Quaternion.Euler(0, 90, 0));
+                    next = (GameObject)Instantiate(Path_Right, pos, Quaternion.Euler(0, 90, 0));
                     prev = cur;
                     cur = after;
                     Destroy(previous);
@@ -120,8 +120,22 @@ public class Initalising : MonoBehaviour {
         }
         // Use this for initialization
         void Start () {
-	
-	}
+        // Initially Spawn 3x Straight roads at -500 units, 0 units and 500 units. 
+        // -500 units is a dummy that will be deleted as soon as Call_Map is called
+        Vector3 pos;
+        cur = 0;
+        prev = 0;
+        after = 0;
+        z_offset = 0f;
+        x_offset = 0f;
+
+        pos = new Vector3(x_offset, 42, z_offset-500f);
+        previous = (GameObject)Instantiate(Path_1, pos, Quaternion.Euler(0, 0, 0));
+        pos = new Vector3(x_offset, 42, z_offset);
+        current = (GameObject)Instantiate(Path_1, pos, Quaternion.Euler(0, 0, 0));
+        pos = new Vector3(x_offset, 42, z_offset+500f);
+        next = (GameObject)Instantiate(Path_1, pos, Quaternion.Euler(0, 0, 0));
+    }
 	
 	// Update is called once per frame
 	void Update () {
