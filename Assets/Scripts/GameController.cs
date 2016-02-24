@@ -5,26 +5,33 @@ using System.Collections;
     {
         private GameObject[] guns;
         
+   
+
         
         // Use this for initialization
         void Start()
         {
             guns = GameObject.FindGameObjectsWithTag("Gun");
+         
                     }
 
-        // Update is called once per frame
-        void Update()
-        {
+    // Update is called once per frame
+    void Update()
+    {
 
-        }
+    }
+    
 
-        void OnTriggerEnter(Collider other)
-        {
-   
+void OnTriggerEnter(Collider other)
+    {
         for (int i = 0; i < guns.Length; i++)
-            {
-                GunController gun = guns[i].GetComponent<GunController>();
-                gun.startShooting();
-            }
+        {
+
+            GunController gun = guns[i].GetComponent<GunController>();
+            gun.startShooting();
         }
+        
+       
+
+    }
     }
