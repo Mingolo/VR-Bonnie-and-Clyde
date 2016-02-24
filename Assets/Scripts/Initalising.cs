@@ -7,12 +7,12 @@ public class Initalising : MonoBehaviour {
     public GameObject Path_Left;
     public GameObject Path_Right;
     public GameObject previous, current, next;
-    public GameObject final;
+    public GameObject Path_final;
     public int prev, cur, after,dir;
     public bool isCheck;
     public bool isZ;
     
-    private int[] map = new int[] {1, 0, 2 , 0 , 0 };
+    private int[] map = new int[] {1, 0, 2 , 0 , 0 , 3 , 3};
     private int counter = 0;
     // Dir or direction is same as below
     // Straight=0, Right=1, Left=2,
@@ -162,6 +162,23 @@ public class Initalising : MonoBehaviour {
                     Destroy(previous.gameObject);
                     previous = current.gameObject;
                     current = next.gameObject;
+                }
+                else if (after == 3 && dir == 0) //Straight and then Left
+                {
+                    z_offset += 500f;
+                    z_check = z_offset;
+                    x_check = 0;
+                    pos = new Vector3(x_offset, 44, z_offset);
+                    next = (GameObject)Instantiate(Path_final, pos, Quaternion.Euler(0, 0, 0));
+                    dir = 0;
+                    isZ = true;
+                    prev = cur;
+                    cur = after;
+                    after = map[counter + 1];
+                    Destroy(previous.gameObject);
+                    previous = current.gameObject;
+                    current = next.gameObject;
+
                 }
                 break;
             //Current Path is Right
