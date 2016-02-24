@@ -9,14 +9,15 @@ public class Initalising : MonoBehaviour {
     public GameObject previous, current, next;
     public GameObject Path_final;
     public GameObject DirLight;
+    private GameObject Car_Move;
     public int prev, cur, after,dir;
     public bool isCheck;
     public bool isZ;
-    
-    private int[] map = new int[] {1, 0, 2 , 0 , 0 , 3 , 3}; 
+    public float timeLeft = 180f;
+    private int[] map = new int[] {1, 0, 2 , 0 , 0 , 0, 3 , 3}; 
     private int counter = 0;
     // Dir or direction is same as below
-    // Straight=0, Right=1, Left=2,
+    // Straight=0, Right=1, Left=2, Final Scene = 3
     // y = +44 plus  so that the terrain starts at y=0
     public float x_offset, z_offset;
     public float x_check, z_check;
@@ -100,7 +101,7 @@ public class Initalising : MonoBehaviour {
                 {
                     z_offset -= 9f;
                     x_offset += 490f;
-                    x_check = x_offset;
+                    x_check = x_offset-20;
                     z_check = 0;
                     pos = new Vector3(x_offset, 44, z_offset);
                     next = (GameObject)Instantiate(Path_Left, pos, Quaternion.Euler(0, 0, 0));
@@ -117,7 +118,7 @@ public class Initalising : MonoBehaviour {
                 else if (after == 0 && dir == 1)//Right path continue Straight
                 {
                     x_offset += 490f;
-                    x_check = x_offset;
+                    x_check = x_offset-20;
                     z_check = 0;
                     pos = new Vector3(x_offset, 44, z_offset);
                     next = (GameObject)Instantiate(Path_1, pos, Quaternion.Euler(0, 90, 0));
@@ -167,7 +168,7 @@ public class Initalising : MonoBehaviour {
                 else if (after == 3 && dir == 0) //Straight and then Final Scene
                 {
                     DirLight.SetActive(false);
-                    z_offset += 500f;
+                    z_offset += 500f;  
                     z_check = z_offset;
                     x_check = 0;
                     pos = new Vector3(x_offset, 44, z_offset);
@@ -311,6 +312,8 @@ public class Initalising : MonoBehaviour {
         z_check = 0f;
         dir = 0;
 
+        Car_Move = GameObject.FindWithTag("Car_Move");
+
         pos = new Vector3(x_offset, 44, z_offset-1000f);
         previous = (GameObject)Instantiate(Path_1, pos, Quaternion.Euler(0, 0, 0));
         pos = new Vector3(x_offset, 44, z_offset-500);
@@ -321,8 +324,21 @@ public class Initalising : MonoBehaviour {
         isZ = true;
     }
 	
-	// Update is called once per frame
-	void FixedUpdate () {
+    void Update()
+    {
+        timeLeft -= Time.deltaTime;
+        if (timeLeft < 0)
+        {
+            Car_Move.SetActive(false);
+        }
+
+
+
+    }
+
+
+    // Update is called once per Second
+    void FixedUpdate () {
         if(isCheck)  //To see if We need to check for next point to call map
         {
             
