@@ -5,7 +5,7 @@ using System.Collections;
     {
         private GameObject[] guns;
         
-        public static bool isCol;
+        
         // Use this for initialization
         void Start()
         {
@@ -20,9 +20,8 @@ using System.Collections;
 
         void OnTriggerEnter(Collider other)
         {
-
-            
-            for (int i = 0; i < guns.Length; i++)
+   
+        for (int i = 0; i < guns.Length; i++)
             {
                 GunController gun = guns[i].GetComponent<GunController>();
                 gun.startShooting();

@@ -8,11 +8,12 @@ public class Initalising : MonoBehaviour {
     public GameObject Path_Right;
     public GameObject previous, current, next;
     public GameObject Path_final;
+    public GameObject DirLight;
     public int prev, cur, after,dir;
     public bool isCheck;
     public bool isZ;
     
-    private int[] map = new int[] {1, 0, 2 , 0 , 0 , 3 , 3};
+    private int[] map = new int[] {1, 0, 2 , 0 , 0 , 3 , 3}; 
     private int counter = 0;
     // Dir or direction is same as below
     // Straight=0, Right=1, Left=2,
@@ -163,8 +164,9 @@ public class Initalising : MonoBehaviour {
                     previous = current.gameObject;
                     current = next.gameObject;
                 }
-                else if (after == 3 && dir == 0) //Straight and then Left
+                else if (after == 3 && dir == 0) //Straight and then Final Scene
                 {
+                    DirLight.SetActive(false);
                     z_offset += 500f;
                     z_check = z_offset;
                     x_check = 0;
