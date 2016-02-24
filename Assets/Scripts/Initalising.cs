@@ -12,11 +12,11 @@ public class Initalising : MonoBehaviour {
     public bool isCheck;
     public bool isZ;
     
-    private int[] map = new int[] {1, 0, 0, 2, 0 };
+    private int[] map = new int[] {1, 0, 2 , 0 , 0 };
     private int counter = 0;
     // Dir or direction is same as below
     // Straight=0, Right=1, Left=2,
-    // y = +42 plus  so that the terrain starts at y=0
+    // y = +44 plus  so that the terrain starts at y=0
     public float x_offset, z_offset;
     public float x_check, z_check;
 
@@ -47,12 +47,13 @@ public class Initalising : MonoBehaviour {
                     z_offset += 500f;
                     z_check = z_offset;
                     x_check = 0;
-                    pos = new Vector3(x_offset, 42, z_offset);
+                    pos = new Vector3(x_offset, 44, z_offset);
                     next = (GameObject)Instantiate(Path_1, pos, Quaternion.Euler(0, 0, 0));
                     dir = 0;
                     isZ = true;
                     prev = cur;
                     cur = after;
+                    after = map[counter + 1];
                     Destroy(previous.gameObject);
                     previous = current.gameObject;
                     current = next.gameObject;
@@ -65,12 +66,13 @@ public class Initalising : MonoBehaviour {
                     z_offset += 500f;
                     z_check = z_offset;
                     x_check = 0;
-                    pos = new Vector3(x_offset, 42, z_offset);
+                    pos = new Vector3(x_offset, 44, z_offset);
                     next = (GameObject)Instantiate(Path_Left, pos, Quaternion.Euler(0, -90, 0));
                     isZ = true;
                     dir = 2;
                     prev = cur;
                     cur = after;
+                    after = map[counter + 1];
                     Destroy(previous.gameObject);
                     previous = current.gameObject;
                     current = next.gameObject;
@@ -82,12 +84,13 @@ public class Initalising : MonoBehaviour {
                     z_offset += 500f;
                     z_check = z_offset;
                     x_check = 0;
-                    pos = new Vector3(x_offset, 41, z_offset);
+                    pos = new Vector3(x_offset, 44, z_offset);
                     next = (GameObject)Instantiate(Path_Right, pos, Quaternion.Euler(0, 90, 0));
                     isZ = true;
                     dir = 1;
                     prev = cur;
                     cur = after;
+                    after = map[counter + 1];
                     Destroy(previous.gameObject);
                     previous = current.gameObject;
                     current = next.gameObject;
@@ -95,15 +98,16 @@ public class Initalising : MonoBehaviour {
                 else if (after == 2 && dir ==1 )//Right and then Left
                 {
                     z_offset -= 9f;
-                    x_offset += 500f;
+                    x_offset += 490f;
                     x_check = x_offset;
                     z_check = 0;
-                    pos = new Vector3(x_offset, 42, z_offset);
+                    pos = new Vector3(x_offset, 44, z_offset);
                     next = (GameObject)Instantiate(Path_Left, pos, Quaternion.Euler(0, 0, 0));
                     dir = 0;
                     isZ = false;
                     prev = cur;
                     cur = after;
+                    after = map[counter + 1];
                     Destroy(previous.gameObject);
                     previous = current.gameObject;
                     current = next.gameObject;
@@ -111,14 +115,15 @@ public class Initalising : MonoBehaviour {
                 }
                 else if (after == 0 && dir == 1)//Right path continue Straight
                 {
-                    x_offset += 500f;
+                    x_offset += 490f;
                     x_check = x_offset;
                     z_check = 0;
-                    pos = new Vector3(x_offset, 42, z_offset);
+                    pos = new Vector3(x_offset, 44, z_offset);
                     next = (GameObject)Instantiate(Path_1, pos, Quaternion.Euler(0, 90, 0));
                     dir = 1;
                     prev = cur;
                     cur = after;
+                    after = map[counter + 1];
                     Destroy(previous.gameObject);
                     previous = current.gameObject;
                     current = next.gameObject;
@@ -129,11 +134,12 @@ public class Initalising : MonoBehaviour {
                     x_offset -= 500f;
                     x_check = x_offset;
                     z_check = 0;
-                    pos = new Vector3(x_offset, 42, z_offset);
+                    pos = new Vector3(x_offset, 44, z_offset);
                     next = (GameObject)Instantiate(Path_1, pos, Quaternion.Euler(0, -90, 0));
                     dir = 2;
                     prev = cur;
                     cur = after;
+                    after = map[counter + 1];
                     Destroy(previous.gameObject);
                     previous = current.gameObject;
                     current = next.gameObject;
@@ -146,12 +152,13 @@ public class Initalising : MonoBehaviour {
                     x_offset -= 500f;
                     x_check = x_offset;
                     z_check = 0;
-                    pos = new Vector3(x_offset, 42, z_offset);
+                    pos = new Vector3(x_offset, 44, z_offset);
                     next = (GameObject)Instantiate(Path_Right, pos, Quaternion.Euler(0, 0, 0));
                     dir = 0;
                     isZ = false;
                     prev = cur;
                     cur = after;
+                    after = map[counter + 1];
                     Destroy(previous.gameObject);
                     previous = current.gameObject;
                     current = next.gameObject;
@@ -164,12 +171,13 @@ public class Initalising : MonoBehaviour {
                     z_offset += 500f;
                     z_check = z_offset;
                     x_check = 0;
-                    pos = new Vector3(x_offset, 42, z_offset);
+                    pos = new Vector3(x_offset, 44, z_offset);
                     next = (GameObject)Instantiate(Path_1, pos, Quaternion.Euler(0, 0, 0));
                     dir = 0;
                     isZ = true;
                     prev = cur;
                     cur = after;
+                    after = map[counter + 1];
                     Destroy(previous.gameObject);
                     previous = current.gameObject;
                     current = next.gameObject;
@@ -180,11 +188,12 @@ public class Initalising : MonoBehaviour {
                     x_check = x_offset;
                     z_check = 0;
 
-                    pos = new Vector3(x_offset, 42, z_offset);
+                    pos = new Vector3(x_offset, 44, z_offset);
                     next = (GameObject)Instantiate(Path_1, pos, Quaternion.Euler(0, 90, 0));
                     dir = 1;
                     prev = cur;
                     cur = after;
+                    after = map[counter + 1];
                     Destroy(previous.gameObject);
                     previous = current.gameObject;
                     current = next.gameObject;
@@ -195,12 +204,13 @@ public class Initalising : MonoBehaviour {
                     z_offset += 510f;
                     z_check = z_offset;
                     x_check = 0;
-                    pos = new Vector3(x_offset, 42, z_offset);
+                    pos = new Vector3(x_offset, 44, z_offset);
                     next = (GameObject)Instantiate(Path_Left, pos, Quaternion.Euler(0, -90, 0));
                     dir = 2;
                     isZ = true;
                     prev = cur;
                     cur = after;
+                    after = map[counter + 1];
                     Destroy(previous.gameObject);
                     previous = current.gameObject;
                     current = next.gameObject;
@@ -214,10 +224,11 @@ public class Initalising : MonoBehaviour {
                     z_offset += 500f;
                     z_check = z_offset;
                     x_check = 0;
-                    pos = new Vector3(x_offset, 42, z_offset);
+                    pos = new Vector3(x_offset, 44, z_offset);
                     next = (GameObject)Instantiate(Path_1, pos, Quaternion.Euler(0, 0, 0));
                     prev = cur;
                     cur = after;
+                    after = map[counter + 1];
                     dir = 0;
                     isZ = true;
                     Destroy(previous.gameObject);
@@ -230,10 +241,12 @@ public class Initalising : MonoBehaviour {
                     x_offset -= 500f;
                     x_check = x_offset;
                     z_check = 0;
-                    pos = new Vector3(x_offset, 42, z_offset);
+                    pos = new Vector3(x_offset, 44, z_offset);
                     next = (GameObject)Instantiate(Path_1, pos, Quaternion.Euler(0, -90, 0));
                     prev = cur;
                     cur = after;
+                  
+                    after = map[counter + 1];
                     dir = 2;
                     Destroy(previous.gameObject);
                     previous = current.gameObject;
@@ -247,12 +260,13 @@ public class Initalising : MonoBehaviour {
                     z_offset += 500f;
                     z_check = z_offset;
                     x_check = 0;
-                    pos = new Vector3(x_offset, 42, z_offset);
+                    pos = new Vector3(x_offset, 44, z_offset);
                     next = (GameObject)Instantiate(Path_Right, pos, Quaternion.Euler(0, 90, 0));
                     dir = 1;
                     isZ = true;
                     prev = cur;
                     cur = after;
+                    after = map[counter + 1];
                     Destroy(previous.gameObject);
                     previous = current.gameObject;
                     current = next.gameObject;
@@ -278,11 +292,11 @@ public class Initalising : MonoBehaviour {
         z_check = 0f;
         dir = 0;
 
-        pos = new Vector3(x_offset, 42, z_offset-1000f);
+        pos = new Vector3(x_offset, 44, z_offset-1000f);
         previous = (GameObject)Instantiate(Path_1, pos, Quaternion.Euler(0, 0, 0));
-        pos = new Vector3(x_offset, 42, z_offset-500);
+        pos = new Vector3(x_offset, 44, z_offset-500);
         current = (GameObject)Instantiate(Path_1, pos, Quaternion.Euler(0, 0, 0));
-        pos = new Vector3(x_offset, 42, z_offset);
+        pos = new Vector3(x_offset, 44, z_offset);
         next = (GameObject)Instantiate(Path_1, pos, Quaternion.Euler(0, 0, 0));
         isCheck = true;
         isZ = true;
@@ -305,7 +319,13 @@ public class Initalising : MonoBehaviour {
             }
             else //Looks like its the X co-ord
             {
-                if(dir == 1 &&  transform.position.x >= x_check) // Going right, check Positive X
+                if (dir == 0 && transform.position.x >= x_check) // Going right, check Positive X
+                {
+                    Call_Map(map[counter]);
+                    isCheck = true;
+                    counter++;
+                }
+                else if (dir == 1 &&  transform.position.x >= x_check) // Going right, check Positive X
                 {
                     Call_Map(map[counter]);
                     isCheck = true;
