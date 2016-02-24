@@ -16,7 +16,7 @@ public class FinalTrigger : MonoBehaviour
 	// Update is called once per frame
     void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.tag == "Final") ;
+        if (other.gameObject.tag == "Car_Move") ;
         final.PlayOneShot(sFinal, 1);
     }
 }

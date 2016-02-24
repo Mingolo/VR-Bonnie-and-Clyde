@@ -3,7 +3,13 @@ using System.Collections;
 
     public class GameController : MonoBehaviour
     {
-        private GameObject[] guns;
+
+    public AudioSource final;
+    public AudioClip sFinal;
+    
+
+    
+    private GameObject[] guns;
         
    
 
@@ -12,8 +18,8 @@ using System.Collections;
         void Start()
         {
             guns = GameObject.FindGameObjectsWithTag("Gun");
-         
-                    }
+        final = this.GetComponent<AudioSource>();
+    }
 
     // Update is called once per frame
     void Update()
@@ -24,6 +30,7 @@ using System.Collections;
 
 void OnTriggerEnter(Collider other)
     {
+        final.PlayOneShot(sFinal, 1);
         for (int i = 0; i < guns.Length; i++)
         {
 
